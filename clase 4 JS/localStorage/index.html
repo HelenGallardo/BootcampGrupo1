@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejemplo de LocalStorage</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>Contador: <span id="valor"></span></h1>
+
+            <button class="btn btn-primary" onclick="iniciar();">Iniciar contador</button>
+
+            <a href="./contador.html" class="btn btn-primary">Ir a incremento</a>
+           
+        </div>
+
+        <script>
+            // Intento recuperar el valor de la variable "contador" desde el Local Storage
+            let valor = localStorage.getItem("contador");
+
+            // Si la variable aún no existe en el Local Storage
+            if (valor == null) {
+                valor = 0;
+            }
+
+            document.getElementById("valor").textContent = valor;
+
+            function iniciar() {
+                localStorage.setItem("contador", 0);
+
+                window.location.href = "./index.html";
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wallet - Últimos Movimientos</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .container ul{
+      color: rgb(15, 15, 15);
+      margin-bottom: 20px;
+    }    
+  </style>
+</head>
+<body>
+  <div class="container p-4 bg-dark text-light">
+    <h2>Últimos Movimientos</h2>
+      <ul class="list-group" id="listaMovimientos">
+      </ul>
+    <a href="menu.html" class="btn btn-secondary">Volver al Menú Principal</a>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+
+
+    $(document).ready(function () {
+    let movimientos = JSON.parse(localStorage.getItem("movimientos")) || [];
+        $.each(movimientos, function(index, movimiento){
+          $("#listaMovimientos").append(
+              `<li class="list-group-item">${movimiento}</li>`
+          );
+      });
+    });
+
+  </script>
+</body>
+</html>

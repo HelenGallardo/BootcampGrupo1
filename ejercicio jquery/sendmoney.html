@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wallet - Enviar Dinero</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+        padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        #contactList{
+            color: rgb(15, 15, 15);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-4 bg-dark text-light">
+        <h2>Enviar Dinero</h2>
+
+        <div class="form-group">
+            <label for="searchContact">Buscar en la agenda de transferencias:</label>
+            <input type="text" class="form-control" id="searchContact" placeholder="Search contact">
+        </div>
+        
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalContacto">Agregar nuevo contacto</button>
+        
+        <h3>Contactos</h3>
+        <ul id="contactList" class="list-group">
+            <li class="list-group-item">
+                <input type="radio" name="contacto">
+                <div class="contact-info">
+                    <span class="contact-name">John Doe</span>
+                    <span class="contact-details">CBU: 123456789, Alias: john.doe, Banco: ABC Bank</span>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <input type="radio" name="contacto">
+                <div class="contact-info">
+                    <span class="contact-name">Jane Smith</span>
+                    <span class="contact-details">CBU: 987654321, Alias: jane.smith, Banco: XYZ Bank</span>
+                </div>
+            </li>
+        </ul>
+        <div class="form-group mt-3">
+            <label for="monto">Monto a transferir:</label>
+            <input type="number" class="form-control" id="monto" placeholder="Ingrese el monto">
+        </div>
+        
+        <button class="btn btn-primary" onclick="enviarDinero();">Enviar dinero</button>
+
+        <a href="menu.html" class="btn btn-secondary">Volver al Menú Principal</a>
+
+        <div class="modal fade" id="modalContacto">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nuevo Contacto</h5>
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <input type="text" id="nombre" class="form-control" placeholder="Ingrese el nombre">
+                        <input type="text" id="cbu" class="form-control" placeholder="Ingrese el CBU">
+                        <input type="text" id="alias" class="form-control" placeholder="Ingrese el alias">
+                        <input type="text" id="banco" class="form-control" placeholder="Ingrese el banco">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="agregarContacto();">Guardar</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script>
+        function agregarContacto() {
+            let nombre = $("#nombre").val();
+            let cbu = $("#cbu").val();
+            let alias = $("#alias").val();
+            let banco = $("#banco").val();
+
+            $("#contactList").append(`
+                <li class="list-group-item">
+                    <input type="radio" name="contacto">
+                    <div class="contact-info">
+                        <span class="contact-name">${nombre}</span>
+                        <span class="contact-details">
+                            CBU: ${cbu}, Alias: ${alias}, Banco: ${banco}
+                        </span>
+                    </div>
+                </li>
+            `);
+
+            alert("Contacto agregado");
+
+            $("#nombre").val("");
+            $("#cbu").val("");
+            $("#alias").val("");
+            $("#banco").val("");
+
+            $("#modalContacto").modal("hide");
+        }
+            
+        function enviarDinero() {
+            let contactoSeleccionado = $('input[name="contacto"]:checked');
+            if (contactoSeleccionado.length === 0) {
+                alert("Debe seleccionar un contacto");
+                return;
+            }
+
+            let monto = Number($("#monto").val());
+            if (isNaN(monto) || monto <= 0) {
+                alert("Ingrese un monto válido.");
+                return;
+            }
+
+            let balance = Number(localStorage.getItem("balance"));
+            if (monto > balance) {
+                alert("No tiene saldo suficiente");
+                return;
+            }
+
+            if (confirm("¿Está seguro de realizar la transferencia?")) {
+                balance -= monto;
+                localStorage.setItem("balance", balance);
+
+                let movimientos = JSON.parse(localStorage.getItem("movimientos")) || [];
+                movimientos.push("Transferencia enviada: $" + monto);
+                localStorage.setItem("movimientos", JSON.stringify(movimientos));
+
+                alert("La transferencia fue exitosa");
+            }
+        }
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

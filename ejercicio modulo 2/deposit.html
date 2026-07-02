@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+      <style>
+    body {
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container p-4 bg-dark text-light">
+      <h2>Depositar</h2>
+      <div class="form-group">
+        <label for="depositAmount">Monto a depositar:</label>
+        <input type="number" class="form-control" id="depositAmount" placeholder="Ingrese un monto">
+      </div>
+      <div class="">
+        <button class="btn btn-primary mt-3" onclick="depositar();">Realizar depósito</button>
+        <a href="menu.html" class="btn btn-secondary mt-3">Volver al Menú Principal</a>
+      </div>
+
+  </div>
+
+  <script>
+    function depositar() {
+        let monto = Number(document.getElementById("depositAmount").value);
+
+        let balance = Number(localStorage.getItem("balance"));
+        localStorage.setItem("balance", balance + monto);
+        window.location.href = "./menu.html";
+    }
+  </script>
+</body>
+</html>

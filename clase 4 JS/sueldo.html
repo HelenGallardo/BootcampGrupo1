@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Sueldo</title>
+</head>
+<body class="m-2">
+
+    <div class="container p-4 bg-dark text-light">
+        <div class="row">
+            <h3 class="mb-3">Calcular sueldo de los trabajadores</h3>
+            <p>Ingrese las horas trabajadas y el valor por hora segùn corresponda</p>
+            <div class="col-xs-12 col-md-6">  
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="">Ingrese horas trabajados</label>
+                    <input class="form-control" id="horas" type="number">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">  
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="">Ingrese el valor por hora</label>
+                    <input class="form-control" id="valor" type="number">
+                </div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="input-group mb-3">
+                    <button class="btn btn-info text-light" onclick="calcularSueldo()">Calcular sueldo</button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <p>Su sueldo es: $<span id="resultado"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calcularSueldo() {
+            let horas = Number(document.getElementById("horas").value);
+            let valor = Number(document.getElementById("valor").value);
+            let sueldo = horas * valor;
+            document.getElementById("resultado").textContent = sueldo.toLocaleString("es-CL");
+        }
+        
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

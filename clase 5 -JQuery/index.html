@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi sitio web con jQuery</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+
+    <div class="container p-4 m-4 bg-dark text-light">
+        <div class="row"> 
+            <div class="col-6 mb-3">
+                <input class="form-control" id="num1" type="number" placeholder="Ingrese un número">
+            </div>
+            <div class="col-6 mb-3">
+                <input class="form-control" id="num2" type="number" placeholder="Ingrese un número">
+            </div>
+            <div class="col-12 mb-3">
+                <button class="btn btn-primary" id="suma">Sumar</button>
+            </div>
+            <div class="col-12 mb-3 text-light">
+                <p id="resultado"></p>
+            </div>  
+        </div>                 
+    </div>   
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#suma").click(function() {
+                    let numero1 = Number($("#num1").val());
+                    let numero2 = Number($("#num2").val());
+                    let resultado = numero1 + numero2;
+                    $("#resultado").text(resultado);
+                });
+            });
+
+           //Se programa la acción a realizar en caso de que se haga clic en el botón MULTIPLICAR
+                $("#multiplicacion").click(function() {
+                    let numero1 = Number($("#num1").val());
+                    let numero2 = Number($("#num2").val());
+                    let resultado = numero1 * numero2;
+                    $("#resultado").text(resultado);
+                });
+
+                // Línea 72: Se programa la acción a realizar en caso de que se haga clic en el botón DIVIDIR
+                $("#division").click(function() {
+                    let numero1 = Number($("#num1").val());
+                    let numero2 = Number($("#num2").val());
+                    let resultado = numero1 / numero2;
+                    $("#resultado").text(resultado);
+                });
+
+        </script>
+    </body>
+</html>

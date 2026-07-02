@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>Calcular Promedio</title>
+</head>
+<body>
+
+<div class="container bg-dark p-3">
+    <div class="text-light mb-3">
+        <h1>Calcular promedio</h1>
+        <p>En esta página podremos calcular el promedio de 3 notas</p>
+    </div>
+
+    <div class="input-group mb-3">
+        <label class="input-group-text">Nota 1: </label>
+        <input class="form-control" id="nota1" placeholder="Ingrese la primera nota" type="number">
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" >Nota 2: </label>
+        <input class="form-control" id="nota2" placeholder="Ingrese la segunda nota" type="number">
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" >Nota 3: </label>
+        <input class="form-control" id="nota3" placeholder="Ingrese la tercera nota" type="number">
+    </div>
+
+      <div class="row text-light">
+        <div class="col-3">
+           <button class="btn btn-info" id="calcular">Calcular Promedio</button>
+        </div> 
+        <div class="col-3">
+           <p id="promedio">Su promedio es:</p>
+        </div>               
+      </div>
+</div> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+            $(document).ready(function() {
+                $("#calcular").click(function() {
+                    let n1 = Number($("#nota1").val());
+                    let n2 = Number($("#nota2").val());
+                    let n3 = Number($("#nota3").val());
+                    let promedio = (n1 + n2 + n3)/ 3;
+                    $("#promedio").text(promedio);
+                });
+            });
+</script>
+
+</body>
+</html>

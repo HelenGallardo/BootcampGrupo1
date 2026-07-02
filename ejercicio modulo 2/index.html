@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wallet - Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+            body {
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .cont-img{
+                display: flex;
+                justify-content: center; /* Centra horizontalmente */
+                align-items: center; 
+            }
+            .cont-img img{
+                width: 35%;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container p-4 bg-dark text-light">
+            <div class="cont-img">
+                <img class="imagen" src="https://images.seeklogo.com/logo-png/34/1/banco-ciudad-de-buenos-aires-logo-png_seeklogo-344027.png" alt="">
+            </div>
+            <h2>Inicio de Sesión</h2>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Ingrese email">
+            </div> 
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingrese contraseña">
+            </div>
+
+            <button class="btn btn-info" onclick="iniciar();">Iniciar Sesión</button>
+        </div>
+
+        <script>
+            // Creo la variable balance en LocalStorage. Todo el sitio tendrá acceso a esta 
+            localStorage.setItem("balance", 0);
+
+            function iniciar() {
+                let email = document.getElementById("email").value;
+                let password = document.getElementById("password").value;
+
+                if (email == "admin@admin.cl" && password == "123") {
+                    alert("Los datos son correctos");
+
+                    window.location.href = "./menu.html"
+
+                } else {
+                    alert("Los datos son incorrectos");
+                }
+            }
+        </script>
+    </body>
+</html>
